@@ -16,7 +16,7 @@ class BattingAttributes:
     age: str
     experience_level: str
     ball_length: str
-    shot_type: str
+    # shot_type: str
 
 
 class BaseVideoAttributeExtractor(ABC):
@@ -31,11 +31,10 @@ class BaseVideoAttributeExtractor(ABC):
     4. Type of shot played or should have played
     
     Provide your response in the following format exactly:
-    Age: <number>
+    Age: <range_start_number - range_end_number>
     Experience: <level>
     Ball Length: <length>
-    Shot Type: <shot>
-    """
+    """  # Shot Type: <shot>
 
     def __init__(self, n_frames: int = 5):
         """
@@ -78,10 +77,10 @@ class BaseVideoAttributeExtractor(ABC):
                 attributes[key.strip().lower()] = value.strip()
 
         return BattingAttributes(
-            age=int(attributes.get("age", "")),
+            age=attributes.get("age", ""),
             experience_level=attributes.get("experience", "").lower(),
             ball_length=attributes.get("ball length", "").lower(),
-            shot_type=attributes.get("shot type", ""),
+            # shot_type=attributes.get("shot type", ""),
         )
 
     def get_attributes(self, image_data: List[ImageData]) -> BattingAttributes:

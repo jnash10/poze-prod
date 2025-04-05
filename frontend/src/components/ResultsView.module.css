@@ -1,0 +1,420 @@
+/* frontend/src/components/ResultsView.module.css */
+.resultsContainer {
+    width: 100%;
+}
+
+/* Status Card */
+.statusCard {
+    background-color: var(--bg-card);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+    text-align: left;
+    position: relative;
+    /* For reset button positioning */
+}
+
+.statusHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.statusHeader h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    color: var(--text-primary);
+}
+
+.statusCard p {
+    margin: 0.25rem 0 0 2rem;
+    /* Indent status message */
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.errorMessageDetail {
+    color: var(--error-text) !important;
+    /* Ensure error color overrides */
+    font-weight: bold;
+}
+
+/* Status Icons */
+.spinner {
+    animation: spin 1.5s linear infinite;
+    color: var(--accent-secondary);
+    /* Purple spinner */
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.successIcon {
+    color: #4CAF50;
+}
+
+/* Green */
+.errorIcon {
+    color: var(--error-text);
+}
+
+.resetButton {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background-color: var(--accent-secondary);
+    color: white;
+    font-size: 0.9rem;
+    padding: 0.4em 0.8em;
+}
+
+.resetButton:hover {
+    background-color: color-mix(in srgb, var(--accent-secondary), black 10%);
+    border-color: transparent;
+}
+
+
+/* Content Grid */
+.contentGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto 1fr;
+    gap: 1.5rem;
+    grid-template-areas:
+        "video attributes"
+        "recommendations recommendations";
+}
+
+.resultCard {
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    /* Default padding */
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+    min-height: 150px;
+}
+
+.resultCard h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--accent-primary);
+    border-bottom: none;
+    padding-bottom: 0;
+    font-size: 1.3rem;
+    /* Default */
+}
+
+
+.videoArea {
+    grid-area: video;
+}
+
+.attributesArea {
+    grid-area: attributes;
+}
+
+.recommendationsArea {
+    grid-area: recommendations;
+}
+
+.videoPlaceholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    /* Adjust as needed */
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    color: var(--text-secondary);
+}
+
+/* Attributes & Feedback Lists */
+.attributesArea ul,
+.recommendationsArea ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.attributesArea li,
+.recommendationsArea li {
+    margin-bottom: 0.6rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.attributesArea li strong {
+    color: var(--text-primary);
+    margin-right: 0.5em;
+}
+
+.feedbackCategory {
+    margin-bottom: 1.5rem;
+}
+
+.feedbackCategory h4 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: var(--accent-primary);
+    /* Orange category titles */
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.recommendationsArea li {
+    padding-left: 1em;
+    /* Indent feedback points */
+    position: relative;
+}
+
+/* Optional: Add custom bullet points */
+.recommendationsArea li::before {
+    content: '•';
+    color: var(--accent-primary);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: bold;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .contentGrid {
+        grid-template-columns: 1fr;
+        /* Stack columns on smaller screens */
+        grid-template-areas:
+            "video"
+            "attributes"
+            "recommendations";
+    }
+
+    .resetButton {
+        position: static;
+        /* Reset positioning */
+        margin-top: 1rem;
+        display: block;
+        /* Make it full width or centered */
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* frontend/src/components/ResultsView.module.css */
+
+/* ... (keep existing styles for .resultsContainer, .statusCard, .contentGrid, .resultCard, etc.) ... */
+
+/* --- Add styles for the video player --- */
+.videoArea {
+    /* Allow video to take space, remove default padding if needed */
+    padding: 0;
+    /* Remove padding if you want video flush with card edges */
+    overflow: hidden;
+    /* Hide any overflow if video aspect ratio differs */
+    display: flex;
+    /* Use flex to contain title and video */
+    flex-direction: column;
+}
+
+.videoArea h3 {
+    /* Add padding back just for the title */
+    padding: 1.5rem 1.5rem 0 1.5rem;
+    /* Top, LR, Bottom */
+    margin-bottom: 0;
+    /* Remove bottom margin if padding is 0 */
+    border-bottom: none;
+    /* Remove border if padding is 0 */
+}
+
+
+.videoPlayer {
+    width: 100%;
+    /* Fill the container width */
+    height: auto;
+    /* Maintain aspect ratio */
+    max-height: 400px;
+    /* Limit max height if needed */
+    display: block;
+    /* Remove extra space below */
+    border-bottom-left-radius: 8px;
+    /* Match card radius if padding is 0 */
+    border-bottom-right-radius: 8px;
+    /* Match card radius if padding is 0 */
+    margin-top: 1rem;
+    /* Add space below title if card padding is removed */
+}
+
+.videoPlaceholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    /* Ensure placeholder has height */
+    height: 100%;
+    /* Try to fill available space */
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    color: var(--text-secondary);
+    margin: 1.5rem;
+    /* Add margin if card padding is removed */
+}
+
+
+/* ... (keep existing styles for .attributesArea, .recommendationsArea, etc.) ... */
+
+/* ... (keep responsive adjustments) ... */
+
+/* In ResultsView.module.css */
+
+.resultCard h3 {
+    /* ... existing styles ... */
+    color: var(--accent-primary);
+    /* Make headings orange */
+    border-bottom: 2px solid var(--accent-primary);
+}
+
+.attributesArea li,
+.recommendationsArea li {
+    /* ... existing styles ... */
+    margin-bottom: 0.8rem;
+    /* Increase spacing */
+}
+
+.feedbackCategory {
+    margin-bottom: 2rem;
+    /* Increase spacing between categories */
+}
+
+/* --- Dynamic Highlighting --- */
+.resultCard {
+    /* ... existing styles ... */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    /* Add transition */
+    border: 1px solid var(--border-color);
+    /* Default border */
+}
+
+.resultCard.processing {
+    /* Add this class dynamically */
+    border-color: var(--accent-secondary);
+    /* Purple border */
+    box-shadow: 0 0 15px rgba(124, 58, 237, 0.3);
+    /* Subtle purple glow */
+}
+
+/* --- Loading Indicators inside cards --- */
+.loadingIndicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+.loadingIndicator svg {
+    /* Style the spinner icon if using one */
+    animation: spin 1.5s linear infinite;
+    color: var(--accent-secondary);
+}
+
+/* --- Status Bar Colors --- */
+.statusCard.status-processing,
+.statusCard.status-attributes_ready,
+.statusCard.status-feedback_ready {
+    border-left: 5px solid var(--accent-secondary);
+    /* Purple */
+}
+
+.statusCard.status-complete {
+    border-left: 5px solid #4CAF50;
+    /* Green */
+}
+
+.statusCard.status-error {
+    border-left: 5px solid var(--error-text);
+    /* Red */
+}
+
+
+@media (max-width: 768px) {
+    .contentGrid {
+        /* Change to single column layout */
+        grid-template-columns: 1fr;
+        /* Remove auto row sizing, let content dictate height */
+        grid-template-rows: auto;
+        /* Stack areas vertically */
+        grid-template-areas:
+            "status"
+            /* Move status card into grid? Or keep separate? Let's keep separate for now */
+            "video"
+            "attributes"
+            "recommendations";
+        gap: 1rem;
+        /* Reduce gap */
+    }
+
+    .resultCard {
+        padding: 1rem;
+        /* Reduce padding */
+        min-height: auto;
+        /* Remove min-height constraint */
+    }
+
+    .resultCard h3 {
+        font-size: 1.1rem;
+        /* Smaller headings */
+        margin-bottom: 1rem;
+    }
+
+    .attributesArea li,
+    .recommendationsArea li {
+        font-size: 0.9rem;
+        /* Smaller list text */
+        margin-bottom: 0.6rem;
+    }
+
+    .feedbackCategory h4 {
+        font-size: 0.95rem;
+        /* Smaller category titles */
+        margin-bottom: 0.75rem;
+    }
+
+    /* Adjust video player max height if needed */
+    .videoPlayer {
+        max-height: 300px;
+        /* Or adjust as needed for mobile */
+    }
+
+    /* Adjust reset button positioning if needed (already handled in previous example) */
+    .resetButton {
+        position: static;
+        margin-top: 1rem;
+        display: block;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Adjust status card text if needed */
+    .statusHeader h2 {
+        font-size: 1.1rem;
+    }
+
+    .statusCard p {
+        font-size: 0.9rem;
+    }
+}

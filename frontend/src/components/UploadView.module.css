@@ -1,0 +1,156 @@
+/* frontend/src/components/UploadView.module.css */
+.uploadContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: var(--bg-card);
+    padding: 2rem 3rem;
+    /* Default padding */
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    min-width: 550px;
+    /* Default min-width for desktop */
+    max-width: 90vw;
+    /* Prevent overflow */
+    width: auto;
+    /* Allow shrinking if needed, constrained by min-width */
+    box-sizing: border-box;
+    /* Include padding/border in width calculation */
+}
+
+.title {
+    font-size: 2.5rem;
+    /* Default */
+    font-weight: bold;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    /* Default */
+    color: var(--text-secondary);
+    margin-top: -0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.dropZone {
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 2.5rem;
+    /* Default */
+    width: 80%;
+    /* Default */
+    max-width: 500px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dropZone:hover {
+    border-color: var(--accent-secondary);
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.uploadIcon {
+    color: var(--accent-primary);
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.dropZone p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.analyzeButton {
+    background-color: var(--accent-primary);
+    color: white;
+    font-weight: bold;
+    padding: 0.8em 1.8em;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.analyzeButton:hover:not(:disabled) {
+    background-color: var(--accent-primary-hover);
+    border-color: transparent;
+}
+
+.analyzeButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--accent-primary);
+}
+
+/* Add to UploadView.module.css */
+.dropZone.draggingOver {
+    /* Add/remove this class with JS */
+    background-color: rgba(124, 58, 237, 0.1);
+    /* Faint purple bg */
+    border-color: var(--accent-secondary);
+    border-style: solid;
+}
+
+/* Add to UploadView.module.css */
+.dropZone:hover .uploadIcon {
+    animation: bounce 0.5s ease-in-out;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+
+/* --- Add Media Query for smaller screens --- */
+@media (max-width: 768px) {
+    .uploadContainer {
+        /* Remove fixed min-width, let it fill available space */
+        min-width: 0;
+        width: 95%;
+        /* Take up most of the screen width */
+        max-width: 500px;
+        /* Optional: still cap max width */
+        /* Reduce padding */
+        padding: 1.5rem 1rem;
+    }
+
+    .title {
+        font-size: 2rem;
+        /* Slightly smaller title */
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        /* Slightly smaller subtitle */
+    }
+
+    .dropZone {
+        width: 90%;
+        /* Make dropzone wider relative to container */
+        padding: 1.5rem;
+        /* Reduce padding */
+    }
+
+    .dropZone p {
+        font-size: 0.9rem;
+        /* Slightly smaller text */
+    }
+
+    .analyzeButton {
+        font-size: 0.95rem;
+        /* Adjust button font if needed */
+        padding: 0.7em 1.5em;
+    }
+}
