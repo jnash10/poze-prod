@@ -1,0 +1,14 @@
+video_path,ground_truth_class,predicted_shot_class
+dataset/backfoot_defence/out6-seg1.mp4,backfoot_defence,drive
+dataset/backfoot_defence/out1-seg36.mp4,backfoot_defence,backfoot defence
+dataset/backfoot_defence/out4-seg11.mp4,backfoot_defence,frontfoot defence
+dataset/backfoot_defence/out4-seg04.mp4,backfoot_defence,drive
+dataset/backfoot_defence/out9-seg13.mp4,backfoot_defence,drive
+dataset/backfoot_defence/68.mp4,backfoot_defence,drive
+dataset/backfoot_defence/out1-seg37.mp4,backfoot_defence,drive
+dataset/backfoot_defence/out1-seg35.mp4,backfoot_defence,drive
+dataset/backfoot_defence/out1-seg21.mp4,backfoot_defence,drive
+dataset/backfoot_defence/out6-seg2.mp4,backfoot_defence,drive
+dataset/backfoot_defence/81.mp4,backfoot_defence,drive
+dataset/backfoot_defence/94.mp4,backfoot_defence,frontfoot defence
+dataset/backfoot_defence/out2-seg28.mp4,backfoot_defence,drive
