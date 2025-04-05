@@ -1,0 +1,53 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name protomate.ai www.protomate.ai; # Replace with your domain
+
+    # Root directory for your *built* React app
+    root /home/agam/poze-prod/frontend/dist; # Adjust if your build output is different
+    index index.html index.htm;
+
+    # Serve React static files and handle client-side routing
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Proxy API requests starting with /api/ to your FastAPI backend
+    location /api/ { # Note the trailing slash here!
+
+        # Remove /api prefix before forwarding to backend
+        # Example: /api/stream/123 becomes /stream/123
+        rewrite ^/api(/.*)$ $1 break;
+
+        proxy_pass http://127.0.0.1:8000; # Backend running locally
+
+        # --- Standard Proxy Headers ---
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # --- CRUCIAL for Server-Sent Events (SSE) ---
+        proxy_http_version 1.1;              # Use HTTP/1.1
+        proxy_set_header Connection '';        # Clear Connection header
+        proxy_set_header X-Accel-Buffering no; # Disable Nginx buffering *VERY IMPORTANT*
+        proxy_buffering off;                 # Disable Nginx buffering *VERY IMPORTANT*
+        proxy_cache off;                     # Disable caching for the stream
+        # Optional: Increase timeouts if needed, default might be okay
+        # proxy_read_timeout 86400s;
+        # proxy_send_timeout 86400s;
+    }
+
+    # You might need specific locations for docs if you want them publicly accessible
+    location /docs {
+        proxy_pass http://127.0.0.1:8000/docs;
+        proxy_set_header Host $host;
+         # Add other relevant proxy headers
+    }
+    location /openapi.json {
+        proxy_pass http://127.0.0.1:8000/openapi.json;
+        proxy_set_header Host $host;
+         # Add other relevant proxy headers
+     }
+}
