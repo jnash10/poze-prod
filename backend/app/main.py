@@ -21,6 +21,8 @@ origins = [
     "http://192.168.0.103:5173",
     # Add your production frontend URL here later
     # e.g., "https://your-frontend-app.azurewebsites.net"
+    "https://protomate.ai",  # Add production domain
+    "https://www.protomate.ai",
 ]
 
 app.add_middleware(
