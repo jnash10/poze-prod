@@ -50,6 +50,7 @@
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
+
 }
 
 .upload-section {
@@ -58,6 +59,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
+
 }
 
 .upload-section input[type="file"] {
@@ -141,6 +143,9 @@ pre {
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
+  /* Good practice */
+
 }
 
 /* --- Add Media Query --- */

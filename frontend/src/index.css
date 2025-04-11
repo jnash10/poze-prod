@@ -17,6 +17,52 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Color Scheme Variables */
+  --accent-primary: #FF6347;
+  /* Tomato / Bright Coral */
+  --accent-primary-hover: #E5533D;
+  /* Darker shade for hover */
+  --accent-secondary: #7F58FF;
+  /* Vibrant Violet */
+  --accent-secondary-hover: #6A40E8;
+  /* Darker violet */
+  --success-color: #4CAF50;
+  /* Green */
+  --error-color: #F44336;
+  /* Red */
+  --warning-color: #FF9800;
+  /* Amber */
+
+  /* Dark Mode Defaults */
+  --text-primary-dark: rgba(255, 255, 255, 0.87);
+  --text-secondary-dark: rgba(255, 255, 255, 0.75);
+  --bg-main-dark: #242424;
+  --bg-card-dark: #2E2E2E;
+  /* Slightly lighter card background */
+  --border-color-dark: #444;
+
+  /* Light Mode Defaults (will be overridden below) */
+  --text-primary-light: #213547;
+  --text-secondary-light: #555;
+  --bg-main-light: #ffffff;
+  --bg-card-light: #f9f9f9;
+  /* Light card background */
+  --border-color-light: #ddd;
+
+  /* Apply Dark Mode by default */
+  color-scheme: dark;
+  /* Indicate default scheme */
+  color: var(--text-primary-dark);
+  background-color: var(--bg-main-dark);
+  --text-primary: var(--text-primary-dark);
+  --text-secondary: var(--text-secondary-dark);
+  --bg-main: var(--bg-main-dark);
+  --bg-card: var(--bg-card-dark);
+  --border-color: var(--border-color-dark);
+  --error-text: var(--error-color);
+  /* Use consistent error name */
+
 }
 
 a {
@@ -52,6 +98,16 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+
+  border: none;
+  /* Remove default border if applying backgrounds */
+  background-color: var(--accent-primary);
+  /* Default to primary */
+  color: white;
+  /* Assume white text is readable on accents */
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+  /* Smooth transitions */
 }
 
 button:hover {
@@ -65,17 +121,29 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color-scheme: light;
+    color: var(--text-primary-light);
+    background-color: var(--bg-main-light);
+    --text-primary: var(--text-primary-light);
+    --text-secondary: var(--text-secondary-light);
+    --bg-main: var(--bg-main-light);
+    --bg-card: var(--bg-card-light);
+    --border-color: var(--border-color-light);
+
+    /* Optionally adjust accent colors for light mode if needed */
+    /* --accent-primary: #F57C00; */
+    /* --accent-primary-hover: #E65100; */
+    /* --accent-secondary: #5E35B1; */
+    /* --accent-secondary-hover: #4527A0; */
   }
 
   a:hover {
     color: #747bff;
   }
 
-  button {
+  /* button {
     background-color: #f9f9f9;
-  }
+  } */
 }
 
 /* --- Add Media Query for smaller screens --- */

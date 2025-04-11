@@ -18,6 +18,8 @@
     /* Allow shrinking if needed, constrained by min-width */
     box-sizing: border-box;
     /* Include padding/border in width calculation */
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
 }
 
 .title {

@@ -103,6 +103,7 @@
     border: 1px solid var(--border-color);
     text-align: left;
     min-height: 150px;
+    /* color: var(--text-primary) */
 }
 
 .resultCard h3 {
