@@ -5,10 +5,10 @@ import ResultsView from './components/ResultsView';
 import styles from './App.module.css'; // Main App container styles
 
 // Change this:
-// const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://192.168.0.103:8000';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://0.0.0.0:8000';
 
 // To this (using a relative path for API calls):
-const BACKEND_URL = '/api'; // Nginx will handle proxying /api to the backend
+// const BACKEND_URL = '/api'; // Nginx will handle proxying /api to the backend
 
 function App() {
   // --- State Variables ---
