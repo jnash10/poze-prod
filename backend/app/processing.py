@@ -99,7 +99,7 @@ async def run_analysis_pipeline(task_id: str, video_path: str):
         # --- Step 3: Generate Feedback (Run in executor) ---
         logger.info(f"[{task_id}] Generating feedback...")
         await send_update(
-            task_id, "status_update", {"message": "Head Coaching giving feedback"}
+            task_id, "status_update", {"message": "Head Coach giving feedback"}
         )
         # Use run_in_executor for the blocking call (includes Gemini network request)
         feedback_obj_dict = await loop.run_in_executor(
